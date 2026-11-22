@@ -107,6 +107,7 @@ if mano_actual is not None:
 
 
 # Identificar fichas jugables
+ficha_seleccionada = None
 if mano_actual is not None:
     print("Fichas que puede jugar ", turno_actual)
 
@@ -121,3 +122,62 @@ if mano_actual is not None:
     
     print("Fichas jugables:", fichas_jugables)
     print("Cantidad de opciones:", len(fichas_jugables))
+
+    if turno_actual == "PC":
+        if len(fichas_jugables) > 0:
+
+            # Seleccionar una ficha aleatoria
+            ficha_seleccionada = random.choice(fichas_jugables)
+
+            print("La PC seleccionó:", ficha_seleccionada)
+
+        else:
+            print("La PC no tiene fichas jugables")
+
+    #Selección de ficha del jugador humano
+    else:
+        if len(fichas_jugables) > 0:
+            print("Opciones disponibles:", fichas_jugables)
+            while True:
+                try:
+                    opcion = int(input("Selecciona una ficha: "))
+
+                    if 1 <= opcion <= len(fichas_jugables):
+                        ficha_seleccionada = fichas_jugables[opcion - 1]
+                        print("El humano seleccionó:", ficha_seleccionada)
+                        break
+                    else:
+                        print("Opción no válida")
+
+                except ValueError:
+                    print("Error: debes ingresar un número entero")
+        else:
+            print("No tienes fichas jugables")
+
+if ficha_seleccionada is not None:
+    jugada_realizada = False
+
+    if ficha_seleccionada[0] == extremo_derecho:
+        mesa.append(ficha_seleccionada)
+        jugada_realizada = True
+    elif ficha_seleccionada[1] == extremo_derecho:
+        invertir_ficha = (ficha_seleccionada[1], ficha_seleccionada[0])
+        mesa.append(invertir_ficha)
+        jugada_realizada = True
+    elif ficha_seleccionada[1] == extremo_izquierdo:
+        mesa.insert(0, ficha_seleccionada)
+        jugada_realizada = True
+    elif ficha_seleccionada[0] == extremo_izquierdo:
+        invertir_ficha = (ficha_seleccionada[1], ficha_seleccionada[0])
+        mesa.insert(0, invertir_ficha)
+        jugada_realizada = True
+    if jugada_realizada:
+        mano_actual.remove(ficha_seleccionada)
+        print("Mesa actualizada:", mesa)
+        print("Fichas restantes:", len(mano_actual))
+        assert (
+            len(jugador1)
+            + len(computadora)
+            + len(restantes)
+            + len(mesa)
+        ) == 28, "Error: se perdió o duplicó una ficha"

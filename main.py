@@ -31,6 +31,28 @@ def mostrar_fichas(nombre, mano):
 mostrar_fichas("humano", jugador1)
 mostrar_fichas("PC", computadora)
 mostrar_fichas("Fichas restantes", restantes)
+
+#Funcion para recorrer listas y ecnontrar el doble mas grande
+def doble_mayor(mano):
+    doble_mayor = -1
+
+    for ficha in mano:
+        if ficha[0] == ficha[1]:
+            if ficha[0] > doble_mayor:
+                doble_mayor = ficha[0]
+    return doble_mayor
+    
+doble_j1 = doble_mayor(jugador1)
+doble_pc = doble_mayor(computadora)
+
+#Determinando quien empieza
+if doble_j1 > doble_pc:
+    turno_actual = "humano"
+elif doble_j1 < doble_pc:
+    turno_actual = "PC"
+else:
+    turno_actual = None
+print("Turno inicial:", turno_actual)
     
 print("total fichas: ", len(fichas))
 assert len(jugador1) == 7 #Comprueba que tenga 7 fichas

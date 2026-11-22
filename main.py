@@ -84,32 +84,40 @@ print("Mesa:", mesa)
 print("Fichas humano:", len(jugador1))
 print("Fichas PC:", len(computadora))
 
-# RETO 08F - Jugar una ficha por la izquierda
+if turno_actual == "humano":
+    mano_actual = computadora
+    turno_actual = "PC"
 
-mesa_prueba = [(6, 4), (4, 2), (2, 1)]
-ficha_jugada = (4, 4)
-
-extremo_izquierdo = mesa_prueba[0][0]
-extremo_derecho = mesa_prueba[-1][-1]
-
-if ficha_jugada[0] == extremo_izquierdo:
-    ficha_invertida = (ficha_jugada[1], ficha_jugada[0])
-    mesa_prueba.insert(0, ficha_invertida)
-
-elif ficha_jugada[1] == extremo_izquierdo:
-    mesa_prueba.insert(0, ficha_jugada)
+elif turno_actual == "PC":
+    mano_actual = jugador1
+    turno_actual = "humano"
 
 else:
-    print("La ficha no puede jugarse por la izquierda")
+    mano_actual = None
 
-if ficha_jugada[1] == extremo_derecho:
-    ficha_invertida = (ficha_jugada[1], ficha_jugada[0])
-    mesa_prueba.append(ficha_invertida)
+if mano_actual is not None:
+    print("Siguiente turno:", turno_actual)
+    print("Fichas disponibles:", mano_actual)
 
-elif ficha_jugada[0] == extremo_derecho:
-    mesa_prueba.append(ficha_jugada)
+    extremo_izquierdo = mesa[0][0]
+    extremo_derecho = mesa[-1][1]
 
-else:
-    print("La ficha no puede jugarse por la derecha")
+    print("Extremo izquierdo:", extremo_izquierdo)
+    print("Extremo derecho:", extremo_derecho)
 
-print("Mesa actualizada:", mesa_prueba)
+
+# Identificar fichas jugables
+if mano_actual is not None:
+    print("Fichas que puede jugar ", turno_actual)
+
+    fichas_jugables = []
+
+    for ficha in mano_actual:
+        if ficha[0] == extremo_derecho or ficha[1] == extremo_derecho:
+            fichas_jugables.append(ficha)
+
+        elif ficha[0] == extremo_izquierdo or ficha[1] == extremo_izquierdo:
+            fichas_jugables.append(ficha)
+
+    print("Fichas jugables:", fichas_jugables)
+    print("Cantidad de opciones:", len(fichas_jugables))

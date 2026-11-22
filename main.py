@@ -23,10 +23,17 @@ jugador1 = fichas[:7]
 computadora= fichas[7:14]
 restantes = fichas[14:]
 
+#Creando la funcion que muestra las fichas
+def mostrar_fichas(nombre, mano):
+    print("Participante: ", nombre)
+    print("Fichas: ", mano)
+    print("Cantidad: ", len(mano))
+    print("------------------------")
 
-print("jugador1", jugador1)
-print("computador", computadora)
-print("restantes", restantes)        
+mostrar_fichas("humano",jugador1)
+mostrar_fichas("PC",computadora)
+mostrar_fichas("Fichas restantes",restantes)
+    
 print("total fichas: ", len(fichas))
 assert len(jugador1) == 7 #Compruba que tenga 7 fichas
 assert len(computadora) == 7 #Compruba que tenga 7 fichas

@@ -118,6 +118,6 @@ if mano_actual is not None:
 
         elif ficha[0] == extremo_izquierdo or ficha[1] == extremo_izquierdo:
             fichas_jugables.append(ficha)
-
+    
     print("Fichas jugables:", fichas_jugables)
     print("Cantidad de opciones:", len(fichas_jugables))

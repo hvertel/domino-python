@@ -126,7 +126,7 @@ if mano_actual is not None:
     if turno_actual == "PC":
         if len(fichas_jugables) > 0:
 
-            # Seleccionar una ficha aleatoria
+            # Seleccionar una ficha aleatoria para el pc
             ficha_seleccionada = random.choice(fichas_jugables)
 
             print("La PC seleccionó:", ficha_seleccionada)
@@ -153,7 +153,7 @@ if mano_actual is not None:
                     print("Error: debes ingresar un número entero")
         else:
             print("No tienes fichas jugables")
-
+#Poner la ficha en la mesa y sacarla de la mano del jugador.
 if ficha_seleccionada is not None:
     jugada_realizada = False
 
